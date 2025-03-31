@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Mail\User;
+use App\Models\User;
 
 
 
@@ -16,17 +16,21 @@ class RegisterEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $name;
+    private $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+
+     // Enviando com Injeção de Dependência
+
+     // Criamos a class diretamente no Contructor User
+    public function __construct(User $qualquernome)
     {
         //
-        $this->name = $name;
+        $this->user = $qualquernome;
     }
 
     public function build()
@@ -34,7 +38,7 @@ class RegisterEmail extends Mailable
         
         //  
         return $this->view('Mail.registerMail', [
-            'nome' => $this->name
+            'nome' => $this->user->name
         ]);
     }
 

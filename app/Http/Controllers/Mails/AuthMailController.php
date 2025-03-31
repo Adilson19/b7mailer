@@ -14,16 +14,16 @@ class AuthMailController extends Controller
     public function sendRegisterMail(){
         
         $user = new User();
-        $user->name = 'Sousa 25';
+        $user->name = 'Sousa 2000';
         
         //  Criando uma instancia da class mail
-        $registerEmail = new RegisterEmail($user->name);
+        $registerEmail = new RegisterEmail($user);
 
         //  Simplesmente para teste
-        return $registerEmail;
+        //return $registerEmail;
 
         //  Usando a class Mail do Laravel para fazer o envio dessa instancio de envio de email
-        //Mail::to('adilsonsousaas82@gmail.com')->send($registerEmail);
+        Mail::to('adilsonsousaas82@gmail.com')->send($registerEmail);
 
     }
 }
