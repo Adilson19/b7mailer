@@ -14,8 +14,11 @@ class AuthMailController extends Controller
         //  Criando uma instancia da class mail
         $registerEmail = new RegisterEmail();
 
+        //  Simplesmente para teste
+        return $registerEmail;
+
         //  Usando a class Mail do Laravel para fazer o envio dessa instancio de envio de email
-        Mail::to('adilsonsousaas82@gmail.com')->send($registerEmail);
+        //Mail::to('adilsonsousaas82@gmail.com')->send($registerEmail);
 
     }
 }
