@@ -14,8 +14,16 @@ class AuthMailController extends Controller
     //  Aqui faz-se as configuracoes do destinatario
     public function sendRegisterMail(){
         
+        //  Inicialiazando o Objeto
         $user = new User();
+
+        //  Dados Do usuario
         $user->name = 'Sousa 2000';
+        $user->password = '123';
+        $user->email = 'teste219@teste.com';
+
+        //  Salvando os dados no Banco de Dados
+        $user->save();
         
         //  Criando uma instancia da class mail
         $registerEmail = new RegisterEmail($user);
@@ -27,7 +35,9 @@ class AuthMailController extends Controller
         Mail::to('adilsonsousaas82@gmail.com')
         //  Para enviar uma copia carbono
         ->cc('email@gmail.com')
-        ->send($registerEmail);
+        ->bcc('email2@gmail.com')
+        //  Metodo queue inves de enviar o email, vai coloca-lo na fila
+        ->queue($registerEmail);
 
     }
 }
